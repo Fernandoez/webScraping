@@ -1,6 +1,8 @@
 from lib2to3.pgen2 import driver
 from os import link
 from unicodedata import name
+from bs4 import BeautifulSoup
+import requests
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -58,4 +60,13 @@ time.sleep(5)
 #driver.close()
 #comando para fechar o browser completo
 driver.quit()
+
+parte que seria usada no beautifulsoup
+simular uma pessoa navegando para poder acessar determinados sites
+headers = {
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36'
+}
+
+url = requests.get(driver.current_url, headers=headers)
+doc = BeautifulSoup(tag, "html.parser")
 '''
