@@ -12,7 +12,6 @@ t = 10
 
 def main():
     service = Service(ChromeDriverManager().install())
-    mercadosList = []
     prices = []
     namesList = []
     pricesList = []
@@ -28,7 +27,7 @@ def main():
 
         #digitar o cep
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, 'input'))).send_keys("35400000" + Keys.RETURN)
-        #element.send_keys("35400000" + Keys.RETURN)
+        
         #digitar o endereço
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, 'streetAddress'))).send_keys("Rua João Fernandes Vieira")
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, 'neighborhood'))).send_keys("Bauxita")
@@ -53,24 +52,24 @@ def main():
         retirada = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/ngb-modal-window/div/div/app-filter-stores-modal/div/div/app-store-list/div/app-filter/div/div[1]/button[2]')))
         retirada.click()
         
-        WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'item ng-star-inserted')))
-        mercadosList = driver.find_elements(By.CLASS_NAME, 'item ng-star-inserted')
+        mercadoList = WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'item ng-star-inserted')))
+        for m in mercadoList:
+            print("teste")
+        #mercadosList = driver.find_elements(By.CLASS_NAME, 'item ng-star-inserted')
 
-        for m in mercadosList:
-            print(m)
     except:
         driver.quit()    
 
-    driver.quit()
-    
     '''
-        time.sleep(t)
-        mercado.find_element(By.CLASS_NAME, 'item-menu active').click()
-        secoes = mercado.find_elements(By.CLASS_NAME, 'content')
-        time.sleep(t)
-        for secao in secoes:
-            secao.click()
-        '''    
+    mercadoList = driver.find_elements(By.CLASS_NAME, 'item ng-star-inserted')
+    for m in mercadoList:
+        print(m.text)
+        #funcao para coleta de dados
+        #m.close()
+        #time.sleep(t)
+    '''
+
+    driver.quit()
 
     
 if __name__ == "__main__":
