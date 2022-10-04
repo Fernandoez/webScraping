@@ -51,11 +51,12 @@ def main():
         #btn retirada
         retirada = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/ngb-modal-window/div/div/app-filter-stores-modal/div/div/app-store-list/div/app-filter/div/div[1]/button[2]')))
         retirada.click()
-        
-        WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'item ng-star-inserted')))
+
+        mercadoList = WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'item ng-star-inserted')))
+        print(mercadoList)
     except:
         driver.quit()    
-
+    time.sleep(t)
     mercadoList = driver.find_elements(By.CLASS_NAME, 'item ng-star-inserted')
     for m in mercadoList:
         print(m)

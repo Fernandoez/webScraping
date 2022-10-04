@@ -1,5 +1,3 @@
-from pickletools import uint1
-from xml.dom.minidom import Element
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
@@ -9,6 +7,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+t = 5
 
 
 def coleta(driver):
@@ -43,16 +42,80 @@ def main():
 
     driver = webdriver.Chrome(service=service)
     driver.get("https://www.faridemcasa.com.br/pwa-app/")
-    #time.sleep(5)
-    # carnes
-    element = WebDriverWait(driver, timeout=10).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="1008"]')))
-    element.click()
-    
+
+    #carnes
+    try:
+        element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="1008"]/img')))
+        element.click()
+
+    except:
+        driver.quit()
+
+    time.sleep(5)
     (names, prices) = coleta(driver)
     namesList = namesList + names
     pricesList = pricesList + prices
     driver.back()
-    time.sleep(10)
+    
+    #frios e laticinios
+    try:
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located(
+            ('xpath', '//*[@id="1007"]'))).click()
+        (names, prices) = coleta(driver)
+        namesList = namesList + names
+        pricesList = pricesList + prices
+        driver.back()
+    except:
+        driver.quit()
+
+    '''
+    #limpeza
+    try:
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located(
+            ('xpath', '//*[@id="1004"]/img'))).click()
+        (names, prices) = coleta(driver)
+        namesList = namesList + names
+        pricesList = pricesList + prices
+        driver.back()
+    except:
+        driver.quit()
+    
+    #padaria
+    try:
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located(
+            ('xpath', '//*[@id="9150"]/img'))).click()
+        (names, prices) = coleta(driver)
+        namesList = namesList + names
+        pricesList = pricesList + prices
+        driver.back()
+    except:
+        driver.quit()
+    
+    #mercearia
+    try:
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located(
+            ('xpath', '//*[@id="1002"]/img'))).click()
+        (names, prices) = coleta(driver)
+        namesList = namesList + names
+        pricesList = pricesList + prices
+        driver.back()
+    except:
+        driver.quit()
+    
+    #hortifruti
+    try:
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located(
+            ('xpath', '//*[@id="1009"]/img'))).click()
+        (names, prices) = coleta(driver)
+        namesList = namesList + names
+        pricesList = pricesList + prices
+        driver.back()
+    except:
+        driver.quit()
+    '''
+    criaCsv(namesList, pricesList)
+    driver.quit()
+
 
 if __name__ == "__main__":
     main()
