@@ -8,23 +8,49 @@ from selenium.webdriver.common.by import By
 import pandas as pd
 import datetime
 import re
+from unidecode import unidecode
+
 csvName = "testeVitor.csv"
 
+#Junta todos os documentos em um únigo dataframe
 def concatDtFrames():
     df = pd.read_csv(csvName, index_col=0)
     print(df)
 
-
+#Remove os caracteres não núméricos e transforma em float
 def removeCaracters():
     df = pd.read_csv(csvName, index_col=0)
-    pricesList = df['Precos'].tolist()
-    newPricesList = []
-    carcaters = "R$"
-    for p in pricesList:
-        p = p.replace(carcaters, "")
-        p = p.replace(',', '.')
-        newPricesList.append(float(p))
-    df['Precos'] = newPricesList
+    pricesBList = df['Preço Base'].tolist()
+    pricesFList = df['Preço Final'].tolist()
+    newPricesBList = []
+    newPricesFList = []
+
+    for p in pricesBList:
+        #p = re.sub(",", '.', p)
+        p = re.sub("[^0-9.0-9]", '', p)
+        newPricesBList.append(float(p))
+    df['Preço Base'] = newPricesBList
+
+    for p in pricesFList:
+        #p = re.sub(",", '.', p)
+        p = re.sub("[^0-9.0-9]", '', p)
+        newPricesFList.append(float(p))
+
+    df['Preço Final'] = newPricesFList
+    df.to_csv(csvName)
+
+#Remove ponto, Ç, acentuação e transforma em caixa alta
+def stringCorrection():
+    df = pd.read_csv(csvName, index_col=0)
+    productList = df['Produto'].to_list()
+    newProductList = []
+    for p in productList:
+        
+        p = re.sub("['|-]", '', p)
+        p = re.sub("[ç]", 'c', p)
+        newProductList.append(unidecode(p.upper()))
+
+    df['Produto'] = newProductList
     df.to_csv(csvName)
 
 
@@ -36,7 +62,7 @@ def main():
     #funcao para remover os caracteres e transformar em numeros
     removeCaracters()
 
-    
+    stringCorrection()
 
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service)
@@ -79,4 +105,4 @@ def main():
 
 
 if __name__ == "__main__":
-    removeCaracters()
+    main()
