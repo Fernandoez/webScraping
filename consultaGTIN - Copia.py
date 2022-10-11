@@ -1,3 +1,4 @@
+from operator import index
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
@@ -9,13 +10,22 @@ import pandas as pd
 import datetime
 import re
 from unidecode import unidecode
+import os
+import glob
 
-csvName = "testeVitor.csv"
+
+csvName = "combined_csv.csv"
 
 #Junta todos os documentos em um únigo dataframe
 def concatDtFrames():
-    df = pd.read_csv(csvName, index_col=0)
-    print(df)
+    os.chdir("./")
+    extension = 'csv'
+    all_filenames = [i for i in glob.glob('*.{}'.format(extension))]
+    #combinar todos os arquivos da lista
+    combined_csv = pd.concat([pd.read_csv(f, index_col=0) for f in all_filenames ], ignore_index=True)
+    #exportar para csv
+    combined_csv.to_csv( "combined_csv.csv", encoding='utf-8-sig')
+
 
 #Remove os caracteres não núméricos e transforma em float
 def removeCaracters():
@@ -57,11 +67,12 @@ def stringCorrection():
 def main(): 
     
     #funcao para transformar em uma tabela
-    #concatDtFrames()
+    concatDtFrames()
 
     #funcao para remover os caracteres e transformar em numeros
     removeCaracters()
 
+    #funcao para padronizar as descricoes
     stringCorrection()
 
     service = Service(ChromeDriverManager().install())
@@ -94,15 +105,15 @@ def main():
         
         except:
             driver.quit()
-
+    driver.quit()
     #pegando a data da geracao do arquivo
     date = datetime.date.today()
     # Inserindo novo nome e codigos e gerando o dataframe final
     df['Produto'] = listName
     df['Codigo_GTIN'] = listGTIN
     df[date] = ""
-    df.to_csv('teste.csv')
+    df.to_csv('final.csv')
 
 
 if __name__ == "__main__":
-    main()
+    concatDtFrames()
