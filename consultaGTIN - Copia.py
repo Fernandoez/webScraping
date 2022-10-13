@@ -63,18 +63,7 @@ def stringCorrection():
     df['Produto'] = newProductList
     df.to_csv(csvName)
 
-
-def main(): 
-    
-    #funcao para transformar em uma tabela
-    concatDtFrames()
-
-    #funcao para remover os caracteres e transformar em numeros
-    removeCaracters()
-
-    #funcao para padronizar as descricoes
-    stringCorrection()
-
+def consultaGtin():
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service)
     driver.get("https://cosmos.bluesoft.com.br/")
@@ -113,6 +102,21 @@ def main():
     df['Codigo_GTIN'] = listGTIN
     df[date] = ""
     df.to_csv('final.csv')
+
+
+def main(): 
+    
+    #funcao para transformar em uma tabela
+    concatDtFrames()
+
+    #funcao para remover os caracteres e transformar em numeros
+    removeCaracters()
+
+    #funcao para padronizar as descricoes
+    stringCorrection()
+
+    #funcao para pegar os codigos no bluesoft
+    consultaGtin()
 
 
 if __name__ == "__main__":

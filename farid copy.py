@@ -11,7 +11,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import pandas as pd
 import re
-
 t = 5
 
 
@@ -35,7 +34,7 @@ def coleta(driver):
     for p in prices:
         p = re.sub(",", '.', p)
         p = re.sub("[^0-9.0-9]", '', p)
-        pricesList.append(float(p))
+        pricesList.append((p))
 
     return (namesList, pricesList)
 
@@ -43,7 +42,7 @@ def coleta(driver):
 def criaCsv(namesList, pricesList):
     geral = {"Produto": namesList,"Preço Base": pricesList, "Preço Final": pricesList}
     df = pd.DataFrame(geral)
-    f = "farid.csv"
+    f = "farid2.csv"
     df.to_csv(f, mode='a', header=not os.path.exists(f))
 
 
@@ -61,8 +60,14 @@ def main():
     
     # carnes
     try:
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, 'Carnes, aves e peixes'))).click()
-        (names, prices) = coleta(driver)       
+        element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/app-root/div/mat-sidenav-container/mat-sidenav-content/app-home/div[1]/div[1]/div/app-top-category/div/div/div/div')))
+        links = element.find_elements(By.TAG_NAME, 'a')
+        time.sleep(t)
+        print(links)
+        for link in links:
+            link.click()
+            time.sleep(t)
+            (names, prices) = coleta(driver)       
     except:
         driver.quit()
     
@@ -71,63 +76,6 @@ def main():
     driver.back()
     time.sleep(t)
 
-    # frios e laticinios
-    try:
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, 'Frios e laticínios'))).click()
-        (names, prices) = coleta(driver)
-    except:
-        driver.quit()
-
-    namesList = namesList + names
-    pricesList = pricesList + prices
-    driver.back()
-    time.sleep(t)
-
-    # limpeza
-    try:
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, 'Limpeza'))).click()
-        (names, prices) = coleta(driver)
-    except:
-        driver.quit()
-
-    namesList = namesList + names
-    pricesList = pricesList + prices
-    driver.back()
-    time.sleep(t)
-
-    # padaria
-    try:
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, 'Salgadinhos'))).click()
-        (names, prices) = coleta(driver)
-    except:
-        driver.quit()
-
-    namesList = namesList + names
-    pricesList = pricesList + prices
-    driver.back()
-    time.sleep(t)
-
-    # mercearia
-    try:
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, 'Mercearia'))).click()
-        (names, prices) = coleta(driver)
-    except:
-        driver.quit()
-
-    namesList = namesList + names
-    pricesList = pricesList + prices
-    driver.back()
-    time.sleep(t)
-
-    # hortifruti
-    try:
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, 'Hortifruti'))).click()
-        (names, prices) = coleta(driver)
-    except:
-        driver.quit()
-
-    namesList = namesList + names
-    pricesList = pricesList + prices
 
     driver.quit()
     criaCsv(namesList, pricesList)
