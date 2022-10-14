@@ -43,7 +43,7 @@ def coleta(driver):
 def criaCsv(namesList, pricesList):
     geral = {"Produto": namesList,"Preço Base": pricesList, "Preço Final": pricesList}
     df = pd.DataFrame(geral)
-    f = "farid.csv"
+    f = "farid2.csv"
     df.to_csv(f, mode='a', header=not os.path.exists(f))
 
 
