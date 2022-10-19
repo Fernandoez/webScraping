@@ -1,3 +1,4 @@
+from operator import index
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
@@ -8,36 +9,39 @@ from selenium.webdriver.common.by import By
 import pandas as pd
 import datetime
 import re
-csvName = "testeVitor.csv"
+from unidecode import unidecode
+import os
+import glob
 
+
+csvName = "final.csv"
+
+#Junta todos os documentos em um únigo dataframe
 def concatDtFrames():
-    df = pd.read_csv(csvName, index_col=0)
-    print(df)
+    os.chdir("./")
+    extension = 'csv'
+    all_filenames = [i for i in glob.glob('*.{}'.format(extension))]
+    #combinar todos os arquivos da lista
+    combined_csv = pd.concat([pd.read_csv(f, index_col=0) for f in all_filenames ], ignore_index=True)
+    #exportar para csv
+    combined_csv.to_csv( csvName, encoding='utf-8-sig')
 
 
-def removeCaracters():
+#Remove ponto, Ç, acentuação e transforma em caixa alta
+def stringCorrection():
     df = pd.read_csv(csvName, index_col=0)
-    pricesList = df['Precos'].tolist()
-    newPricesList = []
-    carcaters = "R$"
-    for p in pricesList:
-        p = p.replace(carcaters, "")
-        p = p.replace(',', '.')
-        newPricesList.append(float(p))
-    df['Precos'] = newPricesList
+    productList = df['Produto'].to_list()
+    newProductList = []
+    for p in productList:
+        
+        p = re.sub("['|-]", '', p)
+        p = re.sub("[ç]", 'c', p)
+        newProductList.append(unidecode(p.upper()))
+
+    df['Produto'] = newProductList
     df.to_csv(csvName)
 
-
-def main(): 
-    
-    #funcao para transformar em uma tabela
-    #concatDtFrames()
-
-    #funcao para remover os caracteres e transformar em numeros
-    removeCaracters()
-
-    
-
+def consultaGtin():
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service)
     driver.get("https://cosmos.bluesoft.com.br/")
@@ -68,15 +72,27 @@ def main():
         
         except:
             driver.quit()
-
+    driver.quit()
     #pegando a data da geracao do arquivo
     date = datetime.date.today()
     # Inserindo novo nome e codigos e gerando o dataframe final
     df['Produto'] = listName
     df['Codigo_GTIN'] = listGTIN
     df[date] = ""
-    df.to_csv('teste.csv')
+    df.to_csv('final.csv')
+
+
+def main(): 
+    
+    #funcao para transformar em uma tabela
+    concatDtFrames()
+
+    #funcao para padronizar as descricoes
+    stringCorrection()
+
+    #funcao para pegar os codigos no bluesoft
+    consultaGtin()
 
 
 if __name__ == "__main__":
-    removeCaracters()
+    concatDtFrames()
