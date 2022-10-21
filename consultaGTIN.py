@@ -63,8 +63,8 @@ def consultaGtin():
             element.send_keys(product + Keys.RETURN)
 
             # lista com os nomes que estão no site
-            capturaName = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="tbl-produtos"]/li[1]/div[2]/h5/a')))
-            listName.append(capturaName.text)
+            captureName = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="tbl-produtos"]/li[1]/div[2]/h5/a')))
+            listName.append(captureName.text)
 
             # lista com os códigos que estão no site
             capturaGtin = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="tbl-produtos"]/li[1]/div[2]/ul/li[2]/a')))
@@ -73,6 +73,7 @@ def consultaGtin():
         except:
             driver.quit()
     driver.quit()
+    
     #pegando a data da geracao do arquivo
     date = datetime.date.today()
     # Inserindo novo nome e codigos e gerando o dataframe final

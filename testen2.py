@@ -14,33 +14,49 @@ import pandas as pd
 import datetime
 import re
 from unidecode import unidecode
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sparse_dot_topn import awesome_cossim_topn
 
-
-csvName = "final.csv"
 qtdProdutosComparados = 6
 
-def testeNgrams(t1, t2):
-    #remove caracteres especiais
-    t1 = re.sub(r'[,-./]|\sBD',r'', t1) 
-    #remove o que estiver dentro de parenteses
-    t1 = re.sub(r'(\s\(.*?\))',r'', t1)
-    t2 = re.sub(r'[,-./]|\sBD',r'', t2)
-    t2 = re.sub(r'(\s\(.*?\))',r'', t2)
-    t2 = re.sub(r'FGO',r'FRANGO', t2)
-    t2 = unidecode(t2.upper())
-    print(t1)
+t1 = ['LINGUICA CALABRESA PIF PAF KG',
+        'LINGUICA PIF PAF 240G JOSEFINA PCT.',
+        'LINGUICA CALABRESA PIF PAF 240G',
+        'LINGUICA PIF PAF',
+        'LINGUIÇA MINEIRA PIF PAF',
+        'LASANHA PIF PAF CALABRESA']
+t2 = 'LINGUIÇA PIF PAF CALABRESA FINA 240G'
 
-    vect = CountVectorizer(analyzer = 'char', ngram_range= (2, 3)) 
-    vocab = vect.fit([t1, t2])
-    test = vocab.fit_transform([t1, t2])
-    test = test.toarray()
-    #print(vocab.vocabulary_)
-    intersection_list = np.amin(test, axis = 0) # Intersecção
-    #print(intersection_list)
-    sum = np.sum(intersection_list)
-    count = np.sum(test[0]) # Texto base para comparação
-    print(sum/count)
-    return (sum/count)
+def testeNgrams(t1, t2):
+    count_vectorizer = CountVectorizer()
+
+    # Learn a vocabulary dictionary of all tokens in the raw documents.
+    vocabulary = count_vectorizer.fit(t1 + [t2]).vocabulary_
+
+    #print(vocabulary)
+
+    tfidf_vectorizer = TfidfVectorizer(vocabulary=vocabulary)
+
+    # Learn vocabulary and idf, return term-document matrix.
+    tfidf_t2 = tfidf_vectorizer.fit_transform([t2])
+
+    #print(tfidf_t2)
+
+    tfidf_t1 = tfidf_vectorizer.fit_transform(t1).transpose()
+
+    #print(tfidf_t1)
+
+    results = awesome_cossim_topn(tfidf_t2, tfidf_t1, qtdProdutosComparados, 0)
+
+    max = (results.argmax())
+    '''
+    print(t2)
+    print('-------------------')
+
+    for index, i in enumerate(results.indices):
+        print('{}: {}'.format(t1[i], results.data[index]))
+    '''
+    return(t1[max])
 
 
 def consultaGtin():
@@ -100,6 +116,3 @@ def consultaGtin():
 
 if __name__ == "__main__":
     consultaGtin()
-
-
-    
