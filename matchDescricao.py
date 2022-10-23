@@ -19,17 +19,19 @@ from unidecode import unidecode
 csvName = "final.csv"
 qtdProdutosComparados = 6
 
-def testeNgrams(t1, t2):
+def nGrams(t1, t2):
     #remove caracteres especiais
     t1 = re.sub(r'[,-./]|\sBD',r'', t1) 
     #remove o que estiver dentro de parenteses
     t1 = re.sub(r'(\s\(.*?\))',r'', t1)
+    
     t2 = re.sub(r'[,-./]|\sBD',r'', t2)
     t2 = re.sub(r'(\s\(.*?\))',r'', t2)
+    #substituindo FGO por FRANGO
     t2 = re.sub(r'FGO',r'FRANGO', t2)
+    #transformando em maiúscula
     t2 = unidecode(t2.upper())
-    print(t1)
-
+    
     vect = CountVectorizer(analyzer = 'char', ngram_range= (2, 3)) 
     vocab = vect.fit([t1, t2])
     test = vocab.fit_transform([t1, t2])
@@ -39,7 +41,7 @@ def testeNgrams(t1, t2):
     #print(intersection_list)
     sum = np.sum(intersection_list)
     count = np.sum(test[0]) # Texto base para comparação
-    print(sum/count)
+    #print(sum/count)
     return (sum/count)
 
 
@@ -71,15 +73,20 @@ def consultaGtin():
             element.clear()
             element.send_keys(product + Keys.RETURN)
 
-            # lista com os nomes que estão no site
+            #lista com os nomes que estão no site
             captureName = WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'item-title')))
+            #lista com os cosigos de cada produto
             captureGtin = WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="tbl-produtos"]/li/div[2]/ul/li[2]')))
+            #fazendo a compracao com cada descricao
             for i in range(qtdProdutosComparados):
                 nome = captureName[i].find_element(By.TAG_NAME, 'a').get_attribute('text')
                 codigo = captureGtin[i].find_element(By.TAG_NAME, 'a').get_attribute('text')
-                match = testeNgrams(nome, product)
+                #match recebe o equivalente a porcentagem de igualdade, se for maior que as outras encontradas passamos a usar essa como a padrão
+                #e atribuímos ela ao nosso BD junto com o código
+                match = nGrams(nome, product)
                 if(match > maxmatch):
                     maxmatch = match
+                    #tirando possiveis partes que estejam dentro de parenteses na descricao
                     nomeFinal = re.sub(r'(\s\(.*?\))',r'', nome)
                     codigoFinal = codigo
             maxmatch = 0.0
