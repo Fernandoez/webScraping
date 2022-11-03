@@ -1,6 +1,7 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -22,7 +23,7 @@ qtdProdutosComparados = 5
 
 #Junta todos os documentos em um únigo dataframe
 def concatDtFrames():
-    os.chdir("./")
+    os.chdir("./tabelas")
     extension = 'csv'
     all_filenames = [i for i in glob.glob('*.{}'.format(extension))]
     #combinar todos os arquivos da lista
@@ -34,13 +35,39 @@ def concatDtFrames():
 #Faz a limpeza e transforma em maiusculo
 def clearString(string):
     #remove caracteres especiais
-    newString = re.sub(r'[,-./]|\sBD',r'', string) 
+    #newString = re.sub(r'[,-./]|\sBD',r'', string) 
     #remove o que estiver dentro de parenteses
     newString = re.sub(r'(\s\(.*?\))',r'', string)
-    #substituindo FGO por FRANGO
-    newString = re.sub(r'FGO',r'FRANGO', string)
     #transformando em maiúscula
     newString = unidecode(string.upper())
+    
+    newString = re.sub(r'K\.G',r'KG', newString)
+    newString = re.sub(r'M\.L',r'ML', newString)
+    if(re.search(r'[A-Z]+\.[A-Z]+', newString) ):
+        newString = re.sub(r'\.',r'. ', newString)
+    newString = re.sub(r'FGO | FGO\.',r'FRANGO', newString)
+    newString = re.sub(r'ADES\.',r'ADESIVA', newString)
+    newString = re.sub(r'IOG\.',r'IOGURTE', newString)
+    newString = re.sub(r'TRANSP\.',r'TRASPARENTE', newString)
+    newString = re.sub(r'UNI\.',r'UNIDADE', newString)
+    newString = re.sub(r'INSET\.',r'INSETICIDA', newString)
+    newString = re.sub(r'ESC\.',r'ESCOVA', newString)
+    newString = re.sub(r'CHOC\.',r'CHOCOLATE', newString)
+    newString = re.sub(r'MAION\.',r'MAIONESE', newString)
+    newString = re.sub(r'DESOD\.',r'DESODORANTE', newString)
+    newString = re.sub(r'BOV\.',r'BOVINA', newString)
+    newString = re.sub(r'SUIN\.',r'SUINO', newString)
+    newString = re.sub(r'CONT\.',r'CONTRA', newString)
+    newString = re.sub(r'FILEZ\.',r'FILEZINHO', newString)
+    newString = re.sub(r'REQ\.',r'REQUEIJAO', newString)
+    newString = re.sub(r'TRAD\.',r'TRADICIONAL', newString)
+    newString = re.sub(r'MARG\.',r'MARGARINA', newString)
+    newString = re.sub(r'DESINF\.',r'DESINFETANTE', newString)
+    newString = re.sub(r'C/',r'COM ', newString)
+    newString = re.sub(r'P\. PAF',r'PIF PAF', newString)
+    newString = re.sub(r'FAT\.',r'FATIADO', newString)
+    newString = re.sub(r'LIMP\.',r'LIMPADOR', newString)
+
     return newString
 
 
@@ -62,6 +89,9 @@ def nGrams(t1, t2):
 #realiza a pesquisa no site BlueSoft usando a descricao do nosso banco
 def consultGtin():
     service = Service(ChromeDriverManager().install())
+    
+    options = Options()
+    options.headless = True
     driver = webdriver.Chrome(service=service)
     driver.get("https://cosmos.bluesoft.com.br/")
     listGTIN = []
@@ -75,18 +105,19 @@ def consultGtin():
 
 
     # Pegando a coluna com os nomes para a pesquisa
-    df = pd.read_csv(csvName, index_col=0)
+    arquivo = "./tabelas/" + csvName
+    df = pd.read_csv(arquivo, index_col=0)
     listProducts = df['Produto'].tolist()
-
+    
     #cookies
     driver.find_element(By.XPATH, '/html/body/div[6]/div/div[2]/button').click()
 
     for product in listProducts:    
         try:
-            
             element = WebDriverWait(driver, 200).until(EC.presence_of_element_located((By.ID, 'search-input')))
             element.clear()
             product = clearString(product)
+            print(product)
             element.send_keys(product + Keys.RETURN)
 
             #lista com os nomes que estão no site
@@ -95,24 +126,30 @@ def consultGtin():
             captureGtin = WebDriverWait(driver, 200).until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="tbl-produtos"]/li/div[2]/ul/li[2]')))
             #fazendo a compracao com cada descricao
             for i in range(qtdProdutosComparados):
-                nome = captureName[i].find_element(By.TAG_NAME, 'a').get_attribute('text')
-                codigo = captureGtin[i].find_element(By.TAG_NAME, 'a').get_attribute('text')
-                #match recebe o equivalente a porcentagem de igualdade, se for maior que as outras encontradas passamos a usar essa como a padrão
-                #e atribuímos ela ao nosso BD junto com o código
-                nome = clearString(nome)
-                match = nGrams(nome, product)
-                if(match > maxmatch):
-                    maxmatch = match
-                    nomeFinal = nome
-                    codigoFinal = codigo
+                try:
+                    nome = captureName[i].find_element(By.TAG_NAME, 'a').get_attribute('text')
+                    codigo = captureGtin[i].find_element(By.TAG_NAME, 'a').get_attribute('text')
+                    #match recebe o equivalente a porcentagem de igualdade, se for maior que as outras encontradas passamos a usar essa como a padrão
+                    #e atribuímos ela ao nosso BD junto com o código
+                except:
+                    nome = product
+                    codigo = "0"
+                if(codigo != "0"):
+                    nome = clearString(nome)
+                    match = nGrams(nome, product)
+                    if(match > maxmatch):
+                        maxmatch = match
+                        nomeFinal = nome
+                        codigoFinal = codigo
             maxmatch = 0.0
             listName.append(nomeFinal)
             listGTIN.append(codigoFinal)
-
+            print(nomeFinal)
+            print(codigoFinal)
         except:
-            driver.quit()
-    driver.quit()
+            print("Erro na pesquisa do produto: " + product)
     
+    driver.quit()
     #pegando a data da geracao do arquivo
     date = datetime.date.today()
     # Inserindo novo nome e codigos e gerando o dataframe final
@@ -132,4 +169,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    consultGtin()

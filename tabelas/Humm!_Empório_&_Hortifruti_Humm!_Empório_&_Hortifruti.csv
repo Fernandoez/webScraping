@@ -1,0 +1,278 @@
+,Produto,Preço Base,Preço Final
+0,Arroz Proença Premium 5Kg,19.9,19.9
+1,Xilitol Kg,99.0,99.0
+2,Farinha de Milho Flocada Orgânica Rancho Biju 400G,18.9,18.9
+3,Farofa Rústica Delícias de Glaura 390G,16.9,16.9
+4,Farofa Rústica Picante Delícias de Glaura 390G,16.9,16.9
+5,Gergelim Descascado,89.0,89.0
+6,Massa de Arroz Konjac Embalagem 270G,29.9,29.9
+7,Massa Fettuccine Konjac 270G,29.9,29.9
+8,Macarrão Espaguete Konjac Embalagem 270G,29.9,29.9
+9,Massa Mf Cabelo de Anjo Konjac 270G,29.9,29.9
+10,Azeite Irarema com Manjericão 250Ml,54.9,54.9
+11,Óleo Klein Spray 200Ml,27.9,27.9
+12,Azeite Irarema com Alecrim 250Ml,54.9,54.9
+13,Óleo de Coco Extra Virgem Spray Klein Foods 200Ml,29.9,29.9
+14,Azeite Extravirgem Vertentes 250Ml,79.9,79.9
+15,Azeite Extra Virgem de Avocado Serras Altas 250Ml,44.9,44.9
+16,Azeite Suave Vertentes 250Ml,79.9,79.9
+17,Azeite Intenso Vertentes 250Ml,79.9,79.9
+18,Óleo de Coco Na Palma Extravirgem sem Sabor 200Ml,19.9,19.9
+19,Ovos Caipira 12Un,15.9,15.9
+20,Sal do Atacama Br Spices com Moedor Vidro 100G,19.9,19.9
+21,Sal Grosso de Alho Negro Alho Negro do Sítio 90G,34.9,34.9
+22,Coco Verde,3.9,3.9
+23,Abacaxi com Mamao sem Acucar Rancho Paraiso 390G,29.9,29.9
+24,Tempero Cheiro Verde Encosta do Vale 20G,3.9,3.9
+25,Louro Orgânico Quintal Verde 3G,6.4,6.4
+26,Frango Assado Un,49.9,49.9
+27,Carne de Lata Piacatuba 900G,64.9,64.9
+28,Linguiça Pernil,24.9,24.9
+29,Linguiça de Frango,23.9,23.9
+30,Linguiça Lombo Suíno Kg,24.9,24.9
+31,Linguiça Lombo com Pimenta 500G,24.9,24.9
+32,Linguiça Alemão com Mostarda em Grão,69.9,69.9
+33,Linguiça Alemã Fina com Pimenta,69.9,69.9
+34,Tilápia 800G,44.9,44.9
+35,Água Crystal com Gás 500Ml,2.9,2.9
+36,Água Crystal sem Gás 500Ml,2.5,2.5
+37,Agua Mineral Natural Inga 510 Ml,2.5,2.5
+38,Leite Vegetal Amêndoa Castanha de Cajú e Amendoim Cajueiro 1L,17.9,17.9
+39,Leite Vegetal de Amêndoa Mix de Nuts e Cacau 100% Cajueiro 1L,17.9,17.9
+40,Baer-Mate Lata 269Ml,7.9,7.9
+41,Chá Mate Gaseificado Baer-Mate 350Ml,9.9,9.9
+42,One More Balance Drink Cramberry Lata 269Ml,9.9,9.9
+43,Sprite Lemon Fresh 510Ml,4.5,4.5
+44,Coca-Cola sem Açúcar 220Ml,3.5,3.5
+45,Guarapan 220Ml,3.2,3.2
+46,"Suco Del Valle 100% Uva 1,5L",24.9,24.9
+47,"Suco Del Valle 100% Maçã 1,5L",19.9,19.9
+48,Cerveja Albanos Puro Malte Pilsen 600Ml,9.9,9.9
+49,Cerveja Albanos Life Lager 600Ml,9.9,9.9
+50,Cerveja Summer Ale Confraria do Porão 600Ml,14.9,14.9
+51,Cachaça Prata Engenho do Coronel 700Ml,39.9,39.9
+52,Cachaça Reserva do Coronel 275Ml,34.9,34.9
+53,Cachaça Ouro Engenho do Coronel 700Ml,49.9,49.9
+54,Vinho Tinto Chileno Casillero Del Diablo Reserva Privada Carmenere Garrafa 750Ml,139.9,139.9
+55,Vinho Casillero Del Diablo Privada Cabernet Sauvignon Garrafa 750Ml,139.9,139.9
+56,Vinho Chileno Concha Y Toro Marques Casa Concha Tinto 750Ml,179.9,179.9
+57,Vinho Tinto Chileno Casillero Del Diablo Reserva Devil's Collection Concha Y Toro Garrafa 750Ml,89.9,89.9
+58,Vinho Chileno Concha Y Toro Marques de Casa Concha Cabernet Sauvignon Garrafa 750Ml,179.9,179.9
+59,Vinho Chileno Tinto Seco Reserva Casillero Del Diablo Cabernet Sauvignon Valle Central Garrafa 750Ml,69.9,69.9
+60,Vinho Casillero Del Diablo 750Ml Carmenere,69.9,69.9
+61,Vinho Tinto Chileno Red Blend Casillero Del Diablo 750Ml,69.9,69.9
+62,Vinho Concha Y Toro Casillero Del Diablo Debvils Collect White Blend 750Ml,89.9,89.9
+63,Vinho Rosé Casillero Del Diablo Garrafa 750Ml,69.9,69.9
+64,Vinho Branco Chileno Concha Y Toro Casillero Del Diablo Chardonnay Garrafa 750Ml,69.9,69.9
+65,Vinho Chileno Branco Meio Seco Sauvignon Blanc Mi Pueblo Viña Maipo 750Ml,39.9,39.9
+66,Vinho Tinto Chileno Seco Carmenere Mi Pueblo Viña Maipo 750Ml,39.9,39.9
+67,Vinho Tinto Chileno Mi Pueblo Cabernet Sauvignon Viña Maipo 750Ml,39.9,39.9
+68,Vinho Tinto Argentino Caracter Cabernet Sauvignon Garrafa 750Ml,29.9,29.9
+69,Vinho Argentino Trivento Reserve Malbec Garrafa 750Ml,79.9,79.9
+70,Vinho Roble Chardonnay Tierras Viejas 750Ml,189.9,189.9
+71,Vinho Branco Sauvignon Blanc Maria Maria Elis 750Ml,134.9,134.9
+72,Vinho Tinto Argentino Caracter Malbec Seco Garrafa 750Ml,29.9,29.9
+73,Vinho Tinto Argentino Caracter Merlot Garrafa 750Ml,29.9,29.9
+74,Vinho Orgânico Lautaro Cabernet Sauvignon 750Ml,79.9,79.9
+75,Vinho Tinto Maria Maria Diana 2017 Seco 750Ml,134.9,134.9
+76,Castanha de Cajú sem Sal,99.0,99.0
+77,Castanha de Caju Torrada Kg,99.0,99.0
+78,Amendoim Crocante Picante Kg,29.0,29.0
+79,Castanha do Pará Média À Granel,79.0,79.0
+80,Biscoito Amendoim Chocolate Ruschel 300G,17.9,17.9
+81,Biscoito Doce Ruschel Amendoim 300G,16.9,16.9
+82,Segredo de Expert Grelhados Hambúguer 100G,19.9,19.9
+83,Biscoito Doce Marquez Merengue sem Glúten sem Lactose Embalagem 150G,15.9,15.9
+84,Ruschel Biscoito Amanteigado Chocolate 300G,17.9,17.9
+85,Biscoito Cacau com Castanha Vitoria 300G,13.9,13.9
+86,Biscoito Enroladinho de Goiabada Vitória 300G,13.9,13.9
+87,Biscoito Sequilho Vegano Batata Doce e Tomate Seco Veganitos 85G,9.9,9.9
+88,Wafer com Cobertura Chocolate 56% Cacau Haoma 25G,9.9,9.9
+89,Biscoito Amanteigado com Goiaba Ruschel 300G,16.9,16.9
+90,Rosca de Povilho Doce Marquez 250G,16.9,16.9
+91,Biscoito de Cacau Celivita 30G,3.2,3.2
+92,Biscoito de Castanha do Pará Vitória 300G,13.9,13.9
+93,Chocolate Meio Amargo Baked Cookies 540G,13.9,13.9
+94,Biscoito Baked Cookies Pack Chocolate Branco Cacow 60G,13.9,13.9
+95,Biscoito Sabor Laranja com Damasco Vitória 300G,13.9,13.9
+96,Biscoito Veganitos Graos 85G,9.9,9.9
+97,Biscoito Cookies de Coco Celivita 30G,3.2,3.2
+98,Biscoito de Polvilho Marquez Rosquinha Sabor Queijo sem Glúten Embalagem 140G,13.9,13.9
+99,Biscoito de Polvilho Marquez Rosquinha Sabor Salsa e Cebola sem Glúten Embalagem 140G,13.9,13.9
+100,Biscoito Sequilho Batata Doce Tradicional Veganitos 85G,9.9,9.9
+101,Biscoito de Parmesão Kg,22.9,22.9
+102,Biscoito Sabor Batata Doce Picante Veganitos 85G,9.9,9.9
+103,Biscoito Veganitos Temperado 85G,9.9,9.9
+104,Biscoito Multi Graos S/Gluten Baunilha 30G Celi Vita,3.2,3.2
+105,Pipoca Artesanal Caramelo e Flor de Sal Mais Pura 75G,8.9,8.9
+106,Mandioquinha Chips Fhom Embalagem 45G,12.9,12.9
+107,Pipoca Doce Artesanal Mais Pura Mascavo Embalagem 150G,12.9,12.9
+108,Pipoca Artesanal Lemom Pepper Mais Pura Saco 50G,9.9,9.9
+109,Batata Chips Fhom Mix de Batatas Doces Embalagem 45G,9.9,9.9
+110,Pipoca Doce Mais Pura Artesanal Cacau Original Embalagem 150G,12.9,12.9
+111,Pipoca Artesanal Banoffee Caramelo & Banana Mais Pura 120G,9.9,9.9
+112,Pipoca Mais Pura Caramelo e Coco 150G,12.9,12.9
+113,Pipoca Artesanal Mais Pura Cacau Zero 65G,11.9,11.9
+114,Chips Fhom Batatas Doces Laranja & Roxa Embalagem 45G,9.9,9.9
+115,Snack Tamara Amendoa Raspa Laranja Vittay 45G,8.9,8.9
+116,Pastel de Angu com Queijo Cheff Gourmet 300Gr,19.9,19.9
+117,Snack Tamara Amora Cranberry Vittay 45G,8.9,8.9
+118,Pipoca Caramelo e Flor de Sal Mais Pura 100G,10.9,10.9
+119,Bananinha Cremosa In Cubs Vittay 45G,8.9,8.9
+120,Pipoca com Caramelo e Flor de Sal Mais Pura 50G,6.9,6.9
+121,Manteiga Vegana Na Palma 180G,29.9,29.9
+122,Manteiga com Sal Moedense 500G,29.9,29.9
+123,Nhoque de Batata Pacote 500G,14.9,14.9
+124,"Raviolli Brie, Damasco Nozes Ao Bechamel Bubani 600G",47.9,47.9
+125,Queijo Provolone Vegano Nomoo Embalagem 150G,29.9,29.9
+126,Queijo Tipo Mozzarella Vegano Nomoo Embalagem 150G,29.9,29.9
+127,Queijo Tipo Chèvre Vegano Nomoo 100G,29.9,29.9
+128,Requeijão com Raspas Kg,39.9,39.9
+129,Queijo Mussarela Vegano,29.9,29.9
+130,Queijo Bufala Kg,79.9,79.9
+131,Queijo Lendário Meia Cura Fazenda Generosa,99.9,99.9
+132,Queijo Minas Artesanal Maturado Dona Iaia,119.9,119.9
+133,Queijo Canastra Roça da Cidade,129.9,129.9
+134,Queijo de Cabra Piallet Chevrille 130G,28.9,28.9
+135,Cogumelo Shimeji Al Mare Embalagem 195G,39.9,39.9
+136,Conserva de Alho Grego 868G,29.9,29.9
+137,Chutney de Cebola Roxa Caramelizada Provençal Gourmet 170G,24.9,24.9
+138,Vinagrete de Pimenta Vale Beija-Flor 160G,24.9,24.9
+139,Molho Amarelo Tucupi 300Ml,18.9,18.9
+140,Molho Provençal Sabarabuçu 240G,22.9,22.9
+141,Molho de Pimenta de Bode Picante Grego 180Ml,9.9,9.9
+142,Molho de Jabuticaba Picante Sabarabucu 150Ml,16.9,16.9
+143,Mostarda de Alho Negro 125G,44.9,44.9
+144,Molho de Alho Negro do Sitio 160G,44.9,44.9
+145,Pesto de Alho Negro 140G,49.9,49.9
+146,Molho de Jabuticaba Sabarabucu 160Ml,24.9,24.9
+147,Molho de Pimenta Biquinho Defumada Grego 180Ml,9.9,9.9
+148,Brodo de Boi Gheek 240Ml,15.9,15.9
+149,Mix Italiano Br Spices com Moedor Vidro 70G,19.9,19.9
+150,Pimenta do Reino em Pó Kg,29.0,29.0
+151,Chimichurri Br Spices 70G,19.9,19.9
+152,Tempero Pronto Br. Spices Segredo Expert Hambúrguer 90G,19.9,19.9
+153,Kit Expert do Gin Tônica Br Spices 40G,49.9,49.9
+154,Barbecue Mix com Moedor Br Spices 80G,19.9,19.9
+155,Moedor Mix Espanhol Br Spices 90G,19.9,19.9
+156,Especiarias Br Spices Páprica Defumada Pote 100G,49.9,49.9
+157,Tempero Completo Grego 500G,14.9,14.9
+158,Tempero Completo com Pimenta Grego 500G,14.9,14.9
+159,Alho em Po Encosta do Vale 50G,7.9,7.9
+160,Páprica Doce Encosta do Vale 60G,4.9,4.9
+161,Tempero Alho e Cebola Grego 500Ml,14.9,14.9
+162,Temperos Encosta do Vale 90G,3.9,3.9
+163,Caldo Brodo Frango Gheek 240 Ml,15.9,15.9
+164,Cebola Flocos Encosta do Vale 20G,2.54,2.54
+165,Páprica Picante Encosta do Vale 60G,4.9,4.9
+166,Manjericão Encosta do Vale 20G,3.9,3.9
+167,Pimenta do Reino em Grao Encosta do Vale Embalagem 50G,5.9,5.9
+168,Tempero Curry Encosta do Vale 70G,3.9,3.9
+169,"Bala Mastigável Stick Fruit Mentos 37,5G",3.5,3.5
+170,Trident Hortelã 8G com 5Un,2.9,2.9
+171,Bala Mastigável Mentos Rainbow,3.5,3.5
+172,Goma de Mascar Menta sem Açúcar Trident 8G,2.9,2.9
+173,"Bala de Mel Artesanal Chocolate Celebrê 6,5G",0.95,0.95
+174,Chocolate 56% Cacau sem Açúcar sem Lactose sem Glúten Haoma 80G,23.9,23.9
+175,Chocolate 53% Cacau Castanha Cacau Dourado 25G,22.9,22.9
+176,Doce de Leite Pastoso Especial Antunes 700G,29.9,29.9
+177,Bananada Cremosa Prosa Doce 400G,17.9,17.9
+178,Doce de Leite com Restrição a Lactose 700G Antunes,28.9,28.9
+179,Doce de Leite Rancho Paraíso 700G,34.9,34.9
+180,Mangada Cremosa Prosa Doce 400G,19.9,19.9
+181,Pa´Soka Chocolate 25G,5.9,5.9
+182,Pasoka Especiarias 25G,5.9,5.9
+183,Doce de Mamão Anel Rancho Paraíso 650G,34.9,34.9
+184,Paçoca Pará & Café Pasoka 25G,5.9,5.9
+185,Pa´Soka Pistache e Coco 25G,5.9,5.9
+186,Paçoca Original Pasoka 25G,5.9,5.9
+187,Ambrosia Kg,32.9,32.9
+188,Limão em Calda Rancho Paraíso 600G,34.9,34.9
+189,"Chantilly de Coco Vegano (Zero Açúcar, Zero Lactose, Zero Glúten) Klein Foods 240G",29.9,29.9
+190,"Chantilly Bullet Cream Coffee (Zero Açúcar, Zero Lactose, Zero Glúten) Klein Foods 240G",29.9,29.9
+191,Cobertura de Jabuticaba Sabarabuçu 180Ml,14.9,14.9
+192,Bolinho de Mel Celevita Embalagem 40G,5.9,5.9
+193,Bolinho de Laranja sem Açúcar Celivita 35G,5.9,5.9
+194,Bolinho de Coco Celivita sem Açúcar 35G,5.9,5.9
+195,Bolo de Cenoura e Brigadeiro Lowcarb 90G,14.9,14.9
+196,Bolo Nibs de Cacau Sabor Laranja Natural Fit Lara 90G,14.9,14.9
+197,Bolo Low Carb Nozes Doce de Leite Zero Gluten e Lactose Natural Fit 90G,17.9,17.9
+198,Panqueca Protéica Sabor Milk Vanilla sem Açúcar sem Lactose sem Glúten My Dream 350G,49.9,49.9
+199,Pão de Mel Mini Magia de Mel,4.9,4.9
+200,Pao Low Carb Natural Fit Brioche 350G 1 Unidade,34.9,34.9
+201,Pão de Centeio 5 Grãos Hb 300G,29.9,29.9
+202,Pão de Hamburguer Vegano da Dani 400G,21.9,21.9
+203,Pao Frances - P/ Kg,34.9,34.9
+204,Baguete Francesa Fermentação Natural,13.9,13.9
+205,Pão Tradicional Slim sem Glúten e sem Lactose Dadani 500G,18.9,18.9
+206,Pão de Forma Natural Fit Keto 350G,39.9,39.9
+207,Pão de Batata Doce sem Glúten e Lactose Natural Fit Embalagem 450G,24.9,24.9
+208,Rosca com Canela das Gerais 450G,19.9,19.9
+209,Pao de Centeio Linhaca Hb 300G,23.9,23.9
+210,Pão de Centeio 3 Grãos Hb 300G,23.9,23.9
+211,Pão de Forma Slim Ervas Finas Dadani 500G,18.9,18.9
+212,Pao de Centeio Original Hb 450G,23.9,23.9
+213,Rosca da Rainha das Gerais 450G,19.9,19.9
+214,Achocolatado Sabor Chocolate Dark My Dream 160G,29.9,29.9
+215,Granola Grano Square Low Carb Coco e Nuts 200G,39.9,39.9
+216,Granola Vegana Grano Square Zero Açúcar 200G,34.9,34.9
+217,Granola Grano Square 40Gr,7.9,7.9
+218,Granola Zero Grano Square 40G,8.9,8.9
+219,Granola Grano Square Salgada 200G,29.9,29.9
+220,Granola Chocolate Vegano Low Carb Grano Square 200G,44.9,44.9
+221,Aveia em Flocos Lugen Finos 500G,9.9,9.9
+222,Café em Cápsulas Mito Coronel Chichico Fazenda Dona Neném 10Un,24.9,24.9
+223,Café Dona Neném em Grãos Fazenda Dona Neném 250G,34.9,34.9
+224,Café Benzedô em Grãos Fazenda Dona Neném 250G,34.9,34.9
+225,Café em Cápsulas Mito Cantagalo Fazenda Dona Neném 10Un,99.9,99.9
+226,Cappuccino Sabor Vanilla Cream sem Açúcar sem Lactose My Dream 160G,27.9,27.9
+227,Café em Cápsulas 10Unidades,24.9,24.9
+228,Capuccino Caramel Salted Mydream 160G,27.9,27.9
+229,Café Moído Especial Benzedô Mito 250G,34.9,34.9
+230,Café Especial Moído Mito Fazenda Dona Neném 250G,34.9,34.9
+231,Café em Cápsulas Mito Benzedô Fazenda Dona Neném 10Un,24.9,24.9
+232,Chá Camomila Melissa e Menta Tribal 30G,32.9,32.9
+233,Chá Mate Orgânico Vanilla Peach Baunilha e Pêssego Tribal Brasil 54G,32.9,32.9
+234,Chá Tribal Mate Hibiscus Lime Orgânico Embalagem 15 Un,15.9,15.9
+235,"Chá Misto Orgânico Digestive Tea Tribal Brasil 22,5G",18.9,18.9
+236,Chá Verde Orgânico Lata com 30 Sachês Tribal Brasil,32.9,32.9
+237,Chá Tribal Baunilha e Pêssego Orgânico 27G,15.9,15.9
+238,"Chá Capim Limão, Melissa e Maracujá Tribal 30G",32.9,32.9
+239,Cha Orgânico Chimarrao,19.9,19.9
+240,Chá Misto Orgânico Gengibre e Cúrcuma Tribal Brasil Embalagem 30 G,18.9,18.9
+241,Chá Mate Tostado Orgânico Tribal Brasil Embalagem 100G,9.9,9.9
+242,"Chá Mandarina Orgânico Tribal 22,5G",15.9,15.9
+243,Chá de Melissa Tribal 15 Sachês 15G,15.9,15.9
+244,Tribal Brasil Chá Orgânico Lemon Ginger 30 Sachês,32.9,32.9
+245,Erva Mate Tribal Hibiscus Lime Lata 60G,32.9,32.9
+246,Chá Orgânico Verde Tribal Brasil 60G,32.9,32.9
+247,Chá Gaia Dei Falci 26G,19.9,19.9
+248,"Chá Tribal Limão e Gengibre Caixa 22,5G",15.9,15.9
+249,"Chá Misto Tribal Erva Doce Orgânico Embalagem 22,5G",15.9,15.9
+250,Chá de Alecrim Orgânico Bem Te Vi 10G,6.4,6.4
+251,Mel Orgânico Trufado Sabor com Amor 250G,64.9,64.9
+252,Geleia de Jabuticaba com Pimenta Sabarabuçu 240G,29.9,29.9
+253,Geleia de Jabuticaba com Cebola Roxa Sabarabuçu 240G,29.9,29.9
+254,Mel Silvestre Mel das Gerais 200G,19.9,19.9
+255,Mel Aromas e Sabores Amêndoas Mbee 150G,59.9,59.9
+256,Melado de Cana Orgânico Mano Vermelho 290G,19.9,19.9
+257,Geléia Agridoce Uai 250G,39.9,39.9
+258,Geleia Manioca Embalagem 130G,19.9,19.9
+259,"Torrada de Salsa, Cebola e Alho Funcional Dadani100g",12.9,12.9
+260,Pastel de Angu de Frango com Requeijão Chef Gourmet 300G,19.9,19.9
+261,Bolinho de Bacalhau Português Chef Gourmet 300G,22.9,22.9
+262,Pastel Angu Cheff Gourmet 300G,19.9,19.9
+263,Pão de Queijo Gourmet Tradicional Chef 1Kg,24.9,24.9
+264,Pizza Média Frango com Requeijão Congelado Vandin,34.9,34.9
+265,Massa Low Carb Macaroni Congelado,39.9,39.9
+266,Lasanha Quatro Funghi Famiglia Bubani 600G,44.9,44.9
+267,Cream Cheese Pesto e Geleia Congelado 250G,39.9,39.9
+268,Torta Folhada de Camarão Congelada,79.9,79.9
+269,Massa Low Carb Conchiglias Congelado,39.9,39.9
+270,Mirtilo Congelado Monte Verde 500G,29.9,29.9
+271,Framboesa Congelada Monte Verde 500G,39.9,39.9
+272,Morango Congelado Monte Verde 500G,16.9,16.9
+273,Caixa Papelão Comprainer,15.9,15.9
+274,Missô Organico Mn Food 500G,28.9,28.9
+275,Mistura Proteica de Aveia com Farinha de Amêndoas Oatmeal 450G,47.9,47.9
+276,Colágeno Hidrolisado em Pó Na Palma 250G,44.9,44.9
