@@ -18,7 +18,7 @@ import numpy as np
 #nome do arquivo final com todos os produtos
 csvName = "final.csv"
 #quantidade de produtos da pagina que vamos pegar para comparar as descricoes
-qtdProdutosComparados = 5
+qtdProdutosComparados = 11
 
 
 #Junta todos os documentos em um únigo dataframe
@@ -73,7 +73,7 @@ def clearString(string):
 
 #comparacao entre a descricao atual pega no site e o produto do nosso banco
 def nGrams(t1, t2):
-    vect = CountVectorizer(analyzer = 'char', ngram_range= (1, 2)) 
+    vect = CountVectorizer(analyzer = 'char', ngram_range= (2, 3)) 
     vocab = vect.fit([t1, t2])
     test = vocab.fit_transform([t1, t2])
     test = test.toarray()
@@ -105,19 +105,18 @@ def consultGtin():
 
 
     # Pegando a coluna com os nomes para a pesquisa
-    arquivo = "./tabelas/" + csvName
+    arquivo = csvName
     df = pd.read_csv(arquivo, index_col=0)
     listProducts = df['Produto'].tolist()
-    
-    #cookies
-    driver.find_element(By.XPATH, '/html/body/div[6]/div/div[2]/button').click()
 
     for product in listProducts:    
         try:
+            #cookies
+            driver.find_element(By.XPATH, '/html/body/div[6]/div/div[2]/button').click()
             element = WebDriverWait(driver, 200).until(EC.presence_of_element_located((By.ID, 'search-input')))
             element.clear()
             product = clearString(product)
-            print(product)
+            #print(product)
             element.send_keys(product + Keys.RETURN)
 
             #lista com os nomes que estão no site
@@ -144,11 +143,12 @@ def consultGtin():
             maxmatch = 0.0
             listName.append(nomeFinal)
             listGTIN.append(codigoFinal)
-            print(nomeFinal)
-            print(codigoFinal)
+            #print(nomeFinal)
+            #print(codigoFinal)
         except:
             print("Erro na pesquisa do produto: " + product)
-    
+            listName.append(nome)
+            listGTIN.append("0")
     driver.quit()
     #pegando a data da geracao do arquivo
     date = datetime.date.today()
@@ -169,4 +169,6 @@ def main():
 
 
 if __name__ == "__main__":
+    print(datetime.datetime.now())
     consultGtin()
+    print(datetime.datetime.now())
