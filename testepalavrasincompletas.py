@@ -24,9 +24,8 @@ def clearString():
     
     for product in listProducts:
         product = unidecode(product.upper())
-        if(re.search(r'[A-Z]+\.[A-Z]+', product) ):
-            product = re.sub(r'K\.G',r'KG', product)
-            product = re.sub(r'\.',r'. ', product)
+        if(re.search(r' , ', product) ):
+            product = re.sub(r' , ',r', ', product)
             print(product)
 
 

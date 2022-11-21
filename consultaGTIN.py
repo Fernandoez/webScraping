@@ -14,9 +14,10 @@ import os
 import glob
 from sklearn.feature_extraction.text import CountVectorizer
 import numpy as np
+import threading
 
 #nome do arquivo final com todos os produtos
-csvName = "final.csv"
+csvName = "teste.csv"
 #quantidade de produtos da pagina que vamos pegar para comparar as descricoes
 qtdProdutosComparados = 11
 
@@ -41,10 +42,15 @@ def clearString(string):
     #transformando em maiúscula
     newString = unidecode(string.upper())
     
+    newString = re.sub(r' - ',r' ', newString)
+    newString = re.sub(r' , ',r', ', newString)
     newString = re.sub(r'K\.G',r'KG', newString)
     newString = re.sub(r'M\.L',r'ML', newString)
+    if(re.search(r'[A-Z]+- ', newString) ):
+        newString = re.sub(r'-',r'', newString)
     if(re.search(r'[A-Z]+\.[A-Z]+', newString) ):
         newString = re.sub(r'\.',r'. ', newString)
+    newString = re.sub(r'KHAPPY',r'K-HAPPY', newString)
     newString = re.sub(r'FGO | FGO\.',r'FRANGO', newString)
     newString = re.sub(r'ADES\.',r'ADESIVA', newString)
     newString = re.sub(r'IOG\.',r'IOGURTE', newString)
@@ -64,6 +70,7 @@ def clearString(string):
     newString = re.sub(r'MARG\.',r'MARGARINA', newString)
     newString = re.sub(r'DESINF\.',r'DESINFETANTE', newString)
     newString = re.sub(r'C/',r'COM ', newString)
+    newString = re.sub(r'S/',r'SEM ', newString)
     newString = re.sub(r'P\. PAF',r'PIF PAF', newString)
     newString = re.sub(r'FAT\.',r'FATIADO', newString)
     newString = re.sub(r'LIMP\.',r'LIMPADOR', newString)
@@ -87,7 +94,7 @@ def nGrams(t1, t2):
 
 
 #realiza a pesquisa no site BlueSoft usando a descricao do nosso banco
-def consultGtin():
+def consultGtin(listProducts):
     service = Service(ChromeDriverManager().install())
     
     options = Options()
@@ -103,38 +110,42 @@ def consultGtin():
     match = 0.0
     maxmatch = 0.0
 
-
-    # Pegando a coluna com os nomes para a pesquisa
-    arquivo = csvName
-    df = pd.read_csv(arquivo, index_col=0)
-    listProducts = df['Produto'].tolist()
-
+    #cookies
+    driver.find_element(By.XPATH, '/html/body/div[6]/div/div[2]/button').click()
     for product in listProducts:    
         try:
-            #cookies
-            driver.find_element(By.XPATH, '/html/body/div[6]/div/div[2]/button').click()
+
             element = WebDriverWait(driver, 200).until(EC.presence_of_element_located((By.ID, 'search-input')))
             element.clear()
             product = clearString(product)
-            #print(product)
+            print(product)
             element.send_keys(product + Keys.RETURN)
 
             #lista com os nomes que estão no site
             captureName = WebDriverWait(driver, 200).until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'item-title')))
             #lista com os cosigos de cada produto
             captureGtin = WebDriverWait(driver, 200).until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="tbl-produtos"]/li/div[2]/ul/li[2]')))
-            #fazendo a compracao com cada descricao
-            for i in range(qtdProdutosComparados):
+            
+            #caso a lista de itens seja menor do que o definido no incio
+            if(len(captureName)<qtdProdutosComparados):
+                comparacoes = len(captureName)
+            else:
+                comparacoes = qtdProdutosComparados
+            
+            #fazendo a comparacao com cada descricao
+            for i in range(comparacoes):
                 try:
                     nome = captureName[i].find_element(By.TAG_NAME, 'a').get_attribute('text')
                     codigo = captureGtin[i].find_element(By.TAG_NAME, 'a').get_attribute('text')
                     #match recebe o equivalente a porcentagem de igualdade, se for maior que as outras encontradas passamos a usar essa como a padrão
                     #e atribuímos ela ao nosso BD junto com o código
                 except:
-                    nome = product
-                    codigo = "0"
+                    nomeFinal = product
+                    codigoFinal = "0"
                 if(codigo != "0"):
                     nome = clearString(nome)
+                    print(product)
+                    print(nome)
                     match = nGrams(nome, product)
                     if(match > maxmatch):
                         maxmatch = match
@@ -143,13 +154,48 @@ def consultGtin():
             maxmatch = 0.0
             listName.append(nomeFinal)
             listGTIN.append(codigoFinal)
-            #print(nomeFinal)
-            #print(codigoFinal)
+            print(nomeFinal)
+            print(codigoFinal)
         except:
             print("Erro na pesquisa do produto: " + product)
-            listName.append(nome)
+            listName.append(product)
             listGTIN.append("0")
     driver.quit()
+    
+    return(listName, listGTIN)
+
+
+def separaLista(listaCompleta, inicio, fim):
+    listaSeparada = []
+    for i in range(inicio, fim):
+        listaSeparada.append(listaCompleta[i])
+    return listaSeparada
+
+def main(): 
+    #funcao para transformar em uma tabela
+    #concatDtFrames()
+
+    # Pegando a coluna com os nomes para a pesquisa
+    df = pd.read_csv(csvName, index_col=0)
+    listProducts = df['Produto'].tolist()
+    n = int (len(listProducts) / 4)
+    
+    #separando os blocos de listas
+    listProducts1 = separaLista(listProducts, 0, n)
+    listProducts2 = separaLista(listProducts, n+1, n*2)
+    listProducts3 = separaLista(listProducts, n*2+1, n*3)
+    listProducts4 = separaLista(listProducts, n*3+1, len(listProducts))
+
+    #funcao para pegar os codigos no bluesoft
+    (listName1, listGTIN1) = threading.Thread(target=consultGtin(listProducts1)) 
+    (listName2, listGTIN2) = threading.Thread(target=consultGtin(listProducts2)) 
+    (listName3, listGTIN3) = threading.Thread(target=consultGtin(listProducts3)) 
+    (listName4, listGTIN4) = threading.Thread(target=consultGtin(listProducts4))
+
+    #juntando as listas modificadas
+    listName = listName1 + listName2 + listName3 + listName4
+    listGTIN = listGTIN1 + listGTIN2 + listGTIN3 + listGTIN4
+
     #pegando a data da geracao do arquivo
     date = datetime.date.today()
     # Inserindo novo nome e codigos e gerando o dataframe final
@@ -159,16 +205,8 @@ def consultGtin():
     df.to_csv(csvName)
 
 
-def main(): 
-    
-    #funcao para transformar em uma tabela
-    concatDtFrames()
-
-    #funcao para pegar os codigos no bluesoft
-    consultGtin()
-
-
 if __name__ == "__main__":
-    print(datetime.datetime.now())
-    consultGtin()
+    inicio = datetime.datetime.now()
+    main()
+    print(inicio)
     print(datetime.datetime.now())
