@@ -186,7 +186,7 @@ def main():
     listProducts3 = separaLista(listProducts, n*2+1, n*3)
     listProducts4 = separaLista(listProducts, n*3+1, len(listProducts))
 
-    #funcao para pegar os codigos no bluesoft
+    #funcao para pegar os codigos no bluesoft com threads
     (listName1, listGTIN1) = threading.Thread(target=consultGtin(listProducts1)) 
     (listName2, listGTIN2) = threading.Thread(target=consultGtin(listProducts2)) 
     (listName3, listGTIN3) = threading.Thread(target=consultGtin(listProducts3)) 
